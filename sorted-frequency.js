@@ -23,7 +23,7 @@ function sortedFrequency(arr, val) {
 
   let startIdx = middleIdx
   let counter = 0;
-  
+
   for (let i=startIdx; i<arr.length; i++) {
     if (arr[i] == val) {
       counter++
@@ -33,7 +33,6 @@ function sortedFrequency(arr, val) {
   if (counter == 0) {
     return -1
   } else {
-    console.log(counter)
     return counter
   }
   
