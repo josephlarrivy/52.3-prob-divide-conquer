@@ -1,29 +1,43 @@
-function sortedFrequency(array, num) {
-  // let startIdx = array.indexOf(num)
-  // let newArray = array.slice(startIdx, array.indexOf(!num))
-  // let occurrances = newArray.length
-  // console.log(newArray)
-  // console.log(occurrances)
-  // return occurrances
+function sortedFrequency(arr, val) {
 
-  let startIdx = array.indexOf(num)
-  if (array.indexOf(num) == -1) {
-    return -1
+  let leftIdx = 0;
+  let rightIdx = arr.length - 1;
+  let middleIdx;
+
+  while (leftIdx <= rightIdx) {
+    // find the middle value
+    middleIdx = Math.floor((leftIdx + rightIdx) / 2);
+    let middleVal = arr[middleIdx];
+
+    if (middleVal < val) {
+      // middleVal is too small, look at the right half
+      leftIdx = middleIdx + 1;
+    } else if (middleVal == val || middleVal > val) {
+      // middleVal is too large, look at the left half
+      rightIdx = middleIdx - 1;
+    } else {
+      // we found our value!
+      return middleIdx;
+    }
   }
 
-  if (startIdx == array.length - 1) {
-    return 1
-  }
-
+  let startIdx = middleIdx
   let counter = 0;
-  for (let i=startIdx; i<array.length; i++) {
-    if (array[i] == num) {
+  
+  for (let i=startIdx; i<arr.length; i++) {
+    if (arr[i] == val) {
       counter++
     }
   }
 
-  console.log(counter)
-  return counter
+  if (counter == 0) {
+    return -1
+  } else {
+    console.log(counter)
+    return counter
+  }
+  
+
 }
 
 sortedFrequency([1, 1, 2, 2, 2, 2, 3], 3)
