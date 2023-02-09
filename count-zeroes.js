@@ -13,29 +13,32 @@
 
 // countZeroes([1,0,0,0])
 
-function countZeroes(arr) {
+function countZeroes(array) {
+  let arr = array
   let leftIdx = 0;
   let rightIdx = arr.length - 1;
   let middleIdx;
 
-  while (leftIdx <= rightIdx) {
+  while (arr.length > 1) {
     // find the middle value
     middleIdx = Math.floor((leftIdx + rightIdx) / 2);
     let middleVal = arr[middleIdx];
 
     if (middleVal !== 0) {
       console.log('middleVal is not zero, look at the right half')
-      leftIdx = middleIdx + 1;
+      leftIdx = middleIdx -1;
+      arr = arr.slice(leftIdx, rightIdx)
     } else if (middleVal == 0) {
       console.log('middleVal is zero, look at the left half')
-      rightIdx = middleIdx - 1;
+      rightIdx = middleIdx;
+      arr = arr.slice(leftIdx, rightIdx)
     }
     // left and right pointers crossed, val isn't in arr
     console.log(`middleIdx: ${middleIdx}`)
     console.log(`LOOP`)
     
   }
-  numZeroes = (arr.length - 1) - (middleIdx)
+  numZeroes = (array.length) - (middleIdx)
   console.log(numZeroes)
   return numZeroes
 }
