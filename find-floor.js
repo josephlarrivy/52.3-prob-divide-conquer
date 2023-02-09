@@ -22,32 +22,33 @@ function findFloor(arr, val) {
       // we found our value!
       floorVal = arr[middleIdx]
       console.log('checkpoint1', floorVal)
-      // return floorVal;
+      break
     }
     console.log('checkpoint2', floorVal)
   }
 
-  console.log(floorVal)
-
-
-  if (floorVal === undefined) {
-    console.log('-1')
-    return -1
-  } else if (floorVal > val) {
-    console.log('here', arr[middleIdx - 1])
-    return arr[middleIdx -1]
+  if (floorVal < val) {
+    console.log(floorVal)
+  } else if (floorVal < val && arr[middleIdx - 1] !== 'undefined') {
+    console.log(arr[middleIdx-1])
   } else {
-    console.log('checkpoint 3', floorVal)
-    return floorVal;
+    console.log('-1')
   }
 }
 
 
 
 
+findFloor([1, 2, 8, 10, 10, 12, 19], 5) //2
 
-// findFloor([1, 2, 8, 10, 10, 12, 19], 9) // 8
-// findFloor([1, 2, 8, 10, 10, 12, 19], 20) // 19
+findFloor([1, 2, 8, 10, 10, 12, 19], 9) // 8
+
+findFloor([1, 2, 8, 9, 10, 10, 12, 14, 16, 17, 19], 13) // 12
+findFloor([1, 2, 8, 9, 10, 10, 12, 14, 16, 17, 19], 18) // 17
+findFloor([1, 2, 8, 9, 10, 10, 12, 14, 16, 17, 19], 3) // 2
+
+
+findFloor([1, 2, 8, 10, 10, 12, 19], 20) // 19
 findFloor([1, 2, 8, 10, 10, 12, 19], 0) // -1
 
 
