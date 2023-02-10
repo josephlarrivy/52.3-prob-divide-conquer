@@ -47,10 +47,40 @@ function countZeroes(array) {
 
 
 
+  let arr = array;
+
+  let leftIdx = arr[0]
+  let rightIdx = arr[arr.length - 1]
+  let middleIdx = Math.floor((leftIdx + rightIdx) / 2);
+
+
+
+
+
+  if (arr[0] == 0) {
+    console.log(arr.length)
+    return arr.length
+  }
+
+  while (leftIdx !== 0) {
+    if (middleIdx == 0) {
+      rightIdx = middleIdx +1;
+      arr = arr.slice(leftIdx, rightIdx);
+    } else if (middleIdx == 1) {
+      leftIdx = middleIdx -1;
+      arr = arr.slice(leftIdx, rightIdx)
+    }
+    console.log(arr)
+    console.log(leftIdx, rightIdx)
+    console.log('############')
+  }
 
   
+  
+  
+
 }
 countZeroes([1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0])
-countZeroes([1, 1, 1, 1, 0, 0])
+countZeroes([0, 0])
 
 module.exports = countZeroes

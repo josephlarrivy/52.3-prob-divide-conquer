@@ -8,12 +8,20 @@ function findFloor(arr, val) {
   let middleIdx = Math.floor((arr.length - 1) / 2);
   let middleVal = arr[middleIdx]
 
-  if (middleVal < val && arr[middleIdx + 1] > val) {
+  if (middleVal <= val && arr[middleIdx + 1] > val) {
     console.log(middleVal);
     return middleVal
   } 
   
-  
+  if (middleVal > 0 && arr[middleIdx - 1] <= val && val < arr[middleIdx]) {
+    return arr[middleIdx - 1];
+  }
+
+  if (val < arr[middleIdx]) {
+    return findFloor(arr, val, low, middleIdx - 1);
+  }
+
+  return findFloor(arr, val, middleIdx + 1, high)
 
 
 }
