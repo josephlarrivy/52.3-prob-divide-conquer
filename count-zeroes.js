@@ -117,25 +117,74 @@
 
 
 
+// function countZeroes(arr) {
+//   let firstZero = findFirst(arr)
+//   if (firstZero === -1) return 0;
+
+//   return arr.length - firstZero
+// }
+
+// function findFirst(arr, low = 0, high = arr.length - 1) {
+//   if (high >= low) {
+//     let mid = low + Math.floor((high - low) / 2)
+//     if ((mid === 0 || arr[mid - 1] === 1) && arr[mid] === 0) {
+//       return mid;
+//     } else if (arr[mid] === 1) {
+//       return findFirst(arr, mid + 1, high)
+//     }
+//     return findFirst(arr, low, mid - 1)
+//   }
+//   return -1;
+// }
+
+// module.exports = countZeroes
+
 function countZeroes(arr) {
-  // add whatever parameters you deem necessary - good luck!
   let firstZero = findFirst(arr)
   if (firstZero === -1) return 0;
+  if (arr[arr.length-1] == 1) return 0;
 
+  console.log(arr.length - firstZero)
   return arr.length - firstZero
 }
 
-function findFirst(arr, low = 0, high = arr.length - 1) {
-  if (high >= low) {
-    let mid = low + Math.floor((high - low) / 2)
-    if ((mid === 0 || arr[mid - 1] === 1) && arr[mid] === 0) {
-      return mid;
-    } else if (arr[mid] === 1) {
-      return findFirst(arr, mid + 1, high)
-    }
-    return findFirst(arr, low, mid - 1)
+const findFirst = (arr, leftIdx = 0, rightIdx = arr.length-1) => {
+  // let leftIdx = 0
+  // let rightIdx = arr.length - 1
+  // let middleIdx = Math.floor((arr.length-1)/2)
+
+  if (rightIdx >= leftIdx) {
+    middleIdx = Math.floor((rightIdx + leftIdx) / 2)
+
+    if ((middleIdx == 0 || arr[middleIdx - 1] == 1) && arr[middleIdx] == 0)
+      return middleIdx;
+
+    // if (arr[middleIdx] == 0) {
+    //   leftIdx = middleIdx;
+    //   // middleIdx = Math.floor((rightIdx - leftIdx) / 2)
+    //   console.log(leftIdx, middleIdx, rightIdx)
+    //   findFirst(arr, leftIdx, rightIdx)
+
+    if (arr[middleIdx] == 1)
+      return findFirst(arr, middleIdx + 1, rightIdx);
+
+    // } else if (arr[middleIdx] == 1) {
+    //   rightIdx = middleIdx;
+    //   middleIdx = Math.floor((rightIdx - leftIdx) / 2)
+    //   console.log(leftIdx, middleIdx, rightIdx)
+    //   findFirst(arr, leftIdx, rightIdx)
+    
+    return (findFirst(arr, leftIdx, middleIdx - 1));
   }
-  return -1;
+  
+  return -1
+
+  // console.log(leftIdx, rightIdx, middleIdx)
 }
 
-module.exports = countZeroes
+countZeroes([1, 1, 1, 0, 0])
+countZeroes([1, 1, 1, 0, 0, 0])
+countZeroes([1, 1, 1, 0, 0, 0, 0])
+countZeroes([1, 1, 1, 1, 0, 0])
+
+countZeroes([1, 1, 1, 1])
