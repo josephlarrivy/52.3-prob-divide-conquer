@@ -1,27 +1,49 @@
 function findFloor(arr, val) {
   
-  let leftIdx = 0;
-  let rightIdx = arr.length -1;
-  let array = arr;
-  let value = val;
+  // let leftIdx = 0;
+  // let rightIdx = arr.length -1;
+  // let array = arr;
+  // let value = val;
 
-  let middleIdx = Math.floor((arr.length - 1) / 2);
+  // // let middleIdx = Math.floor((arr.length - 1) / 2);
+  // Math.floor((leftIdx + rightIdx) / 2);
+  // let middleVal = arr[middleIdx]
+
+  // if (leftIdx > rightIdx) {
+  //   return -1;
+  // } else if (arr[middleIdx] === val) {
+  //   return arr[middleIdx] 
+  // } else if (middleVal <= val && arr[middleIdx + 1] > val) {
+  //   // console.log(middleVal);
+  //   return middleVal
+  // } else if (middleVal > 0 && arr[middleIdx - 1] <= val && val < arr[middleIdx]) {
+  //   return arr[middleIdx - 1];
+  // } else if (val < arr[middleIdx]) {
+  //   return findFloor(arr, val, low, middleIdx - 1);
+  // } else {
+  //   return findFloor(arr, val, middleIdx + 1, high)
+  // }
+  
+
+  let leftIdx = 0;
+  let rightIdx = arr.length - 1;
+
+  let middleIdx = Math.floor((leftIdx + rightIdx) / 2);
   let middleVal = arr[middleIdx]
 
-  if (middleVal <= val && arr[middleIdx + 1] > val) {
-    console.log(middleVal);
-    return middleVal
-  } 
-  
-  if (middleVal > 0 && arr[middleIdx - 1] <= val && val < arr[middleIdx]) {
+  if (leftIdx > rightIdx) {
+    return -1;
+  } else if (val >= arr[rightIdx]) {
+    return arr[rightIdx];
+  } else if (arr[middleIdx] === val) {
+    return arr[middleIdx]
+  } else if (middleVal > 0 && arr[middleIdx - 1] <= val && val < arr[middleIdx]) {
     return arr[middleIdx - 1];
+  } else if (val < arr[middleIdx]) {
+    return findFloor(arr, val, leftIdx, middleIdx - 1);
+  } else {
+    return findFloor(arr, val, middleIdx + 1, rightIdx)
   }
-
-  if (val < arr[middleIdx]) {
-    return findFloor(arr, val, low, middleIdx - 1);
-  }
-
-  return findFloor(arr, val, middleIdx + 1, high)
 
 
 }

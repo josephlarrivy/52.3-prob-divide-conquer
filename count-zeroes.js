@@ -154,7 +154,7 @@ const findFirst = (arr, leftIdx = 0, rightIdx = arr.length-1) => {
   // let middleIdx = Math.floor((arr.length-1)/2)
 
   if (rightIdx >= leftIdx) {
-    middleIdx = Math.floor((rightIdx + leftIdx) / 2)
+    middleIdx = leftIdx + Math.floor((rightIdx + leftIdx) / 2)
 
     if ((middleIdx == 0 || arr[middleIdx - 1] == 1) && arr[middleIdx] == 0)
       return middleIdx;
